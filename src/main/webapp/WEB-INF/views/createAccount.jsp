@@ -16,7 +16,6 @@
 <body>
     <div class="wrapper">
         <main>
-        
             <div class="authorization_head">
                 <img class="mark" src="resources/img/logo.png" />
                 <div class="logo">Seattle Library</div>
@@ -25,12 +24,11 @@
                 <div class="authorization_form">
                     <form method="post" action="createAccount">
                         <div class="title">アカウントの作成</div>
-                        <label class="label">メールアドレス</label> <input type="email" class="input" id="email" name="email" autocomplete="off" required> <label class="label">パスワード</label> <input type="password" class="input" id="password" name="password" required> <label class="label">パスワード（確認用）</label> <input type="password" class="input" id="passwordForCheck" name="passwordForCheck" required> 
-                    <c:if test="${!empty errorPassword}">
-                    <p class="error">${errorPassword}</p>
-                    </c:if>
-                   
-                    <input type="submit" class="button primary" value="作成する">
+                        <label class="label">メールアドレス</label> <input type="email" class="input" id="email" name="email" autocomplete="off" required> <label class="label">パスワード</label> <input type="password" class="input" id="password" name="password" required> <label class="label">パスワード（確認用）</label> <input type="password" class="input" id="passwordForCheck" name="passwordForCheck" required>
+                        <c:if test="${!empty errorPassword}">
+                            <p class="error">${errorPassword}</p>
+                        </c:if>
+                        <input type="submit" class="button primary" value="作成する">
                     </form>
                 </div>
                 <div class="authorization_navi">
