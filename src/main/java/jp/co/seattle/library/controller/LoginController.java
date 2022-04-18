@@ -53,7 +53,5 @@ public class LoginController {
 			return "home";
 		}
 	}
-	// 本の情報を取得して画面側に渡す
 	
-
 }
