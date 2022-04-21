@@ -67,5 +67,17 @@ public class BooksService {
 				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," + "now()," + "now())";
 
 		jdbcTemplate.update(sql);
+
+	}
+
+	/**
+	 * 書籍を削除する
+	 *
+	 * @param bookInfo bookId
+	 */
+	public void deleteBook(Integer bookId) {
+		// TODO 自動生成されたメソッド・スタブ
+		String sql = "DELETE FROM books WHERE id = " + bookId + ";";
+		jdbcTemplate.update(sql);
 	}
 }
