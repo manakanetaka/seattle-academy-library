@@ -21,15 +21,6 @@ import jp.co.seattle.library.service.BooksService;
 public class DeleteBookController {
 	final static Logger logger = LoggerFactory.getLogger(DeleteBookController.class);
 
-	/**
-	 * 対象書籍を削除する
-	 *
-	 * @param locale ロケール情報
-	 * @param bookId 書籍ID
-	 * @param model  モデル情報
-	 * @return 遷移先画面名
-	 */
-
 	@Autowired
 	private BooksService booksService;
 

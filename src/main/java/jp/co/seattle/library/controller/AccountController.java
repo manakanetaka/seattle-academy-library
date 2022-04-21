@@ -58,6 +58,8 @@ public class AccountController {
 		if (password.length() >= 8 && password.matches("^[0-9a-zA-Z]+$")) {
 
 			if (password.equals(passwordForCheck)) {
+				userInfo.setPassword(password);
+				usersService.registUser(userInfo);
 				return "login";
 
 			} else {
