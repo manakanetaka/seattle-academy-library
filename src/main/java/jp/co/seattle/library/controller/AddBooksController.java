@@ -36,17 +36,6 @@ public class AddBooksController {
 		return "addBook";
 	}
 
-	/**
-	 * 書籍情報を登録する
-	 * 
-	 * @param locale    ロケール情報
-	 * @param title     書籍名
-	 * @param author    著者名
-	 * @param publisher 出版社
-	 * @param file      サムネイルファイル
-	 * @param model     モデル
-	 * @return 遷移先画面
-	 */
 	@Transactional
 	@RequestMapping(value = "/insertBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String insertBook(Locale locale, @RequestParam("title") String title, @RequestParam("author") String author,
@@ -85,22 +74,23 @@ public class AddBooksController {
 				return "addBook";
 			}
 		}
-		
-		if(title.isEmpty()|| author.isEmpty() ||publisher.isEmpty()||publishDate.isEmpty()) {
-			model.addAttribute("errorhissu","必須項目が未入力です");
-	       
-	    }
-		if(!publishDate.matches("^[0-9]{8}+$")) {
-			model.addAttribute("errordate","出版日は半角数字のYYYYMMDD形式で入力してください");
-			
+
+		if (title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishDate.isEmpty()) {
+			model.addAttribute("errorhissu", "必須項目が未入力です");
+
 		}
-		if(!isbn.matches("^[0-9]{10}||[0-9]{13}+$")) {
-			model.addAttribute("errorisbn","ISBNは半角数字で、１０桁か１３桁で入力してください");
-			
-     	}
-		if((title.isEmpty()|| author.isEmpty() ||publisher.isEmpty()||publishDate.isEmpty())||(!publishDate.matches("^[0-9]{8}+$"))||(!isbn.matches("^[0-9]{10}||[0-9]{13}+$"))) {
+		if (!publishDate.matches("^[0-9]{8}+$")) {
+			model.addAttribute("errordate", "出版日は半角数字のYYYYMMDD形式で入力してください");
+
+		}
+		if (!isbn.matches("^[0-9]{10}||[0-9]{13}+$")) {
+			model.addAttribute("errorisbn", "ISBNは半角数字で、１０桁か１３桁で入力してください");
+
+		}
+		if ((title.isEmpty() || author.isEmpty() || publisher.isEmpty() || publishDate.isEmpty())
+				|| (!publishDate.matches("^[0-9]{8}+$")) || (!isbn.matches("^[0-9]{10}||[0-9]{13}+$"))) {
 			model.addAttribute("bookInfo", bookInfo);
-			
+
 			return "addBook";
 		}
 		// 書籍情報を新規登録する
@@ -109,12 +99,9 @@ public class AddBooksController {
 		model.addAttribute("resultMessage", "登録完了");
 
 		// TODO 登録した書籍の詳細情報を表示するように実装
-        int MaxId = booksService.MaxId();
-		model.addAttribute("bookDetailsInfo",booksService.getBookInfo(MaxId));
+		int MaxId = booksService.MaxId();
+		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(MaxId));
 		return "details";
-		
-	
-
 	}
 
 }

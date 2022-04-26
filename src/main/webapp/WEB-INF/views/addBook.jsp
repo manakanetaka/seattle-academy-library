@@ -42,11 +42,10 @@
                 <div class="content_right">
                     <c:if test="${!empty errorhissu||!empty errordate||!empty errorisbn}">
                         <div class="error">
-                        <p>${errorhissu}</p>
-                        <p>${errordate}</p>
-                        <p>${errorisbn}</p>
+                            <p>${errorhissu}</p>
+                            <p>${errordate}</p>
+                            <p>${errorisbn}</p>
                         </div>
-                        
                     </c:if>
                     <div>
                         <span>書籍名</span><span class="care care2">必須</span>
