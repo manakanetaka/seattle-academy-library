@@ -17,6 +17,7 @@ import jp.co.seattle.library.rowMapper.BookInfoRowMapper;
  * 書籍サービス
  * 
  * booksテーブルに関する処理を実装する
+ * 
  */
 @Service
 public class BooksService {
@@ -26,58 +27,66 @@ public class BooksService {
 
 	/**
 	 * 書籍リストを取得する
-	 *
-	 * @return 書籍リスト
+	 * 
+	 * @return書籍リスト
 	 */
+
 	public List<BookInfo> getBookList() {
 
 		// TODO 取得したい情報を取得するようにSQLを修正
 		List<BookInfo> getedBookList = jdbcTemplate.query(
-				"SELECT id, title, thumbnail_url, author, publisher, publish_date FROM books ORDER BY title",
+				"SELECT id, title, thumbnail_url, author, publisher, publish_date,isbn,EXPOSITION FROM books ORDER BY title",
 				new BookInfoRowMapper());
 
 		return getedBookList;
 	}
 
 	/**
-	 * 書籍IDに紐づく書籍詳細情報を取得する
-	 *
-	 * @param bookId 書籍ID
+	 * 書籍IDに基づく書籍詳細情報を取得する ＠param bookId 書籍ID
+	 * 
 	 * @return 書籍情報
+	 *
 	 */
+
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
 		String sql = "SELECT * FROM books where id =" + bookId;
 
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
-
 		return bookDetailsInfo;
 	}
 
-	/**
-	 * 書籍を登録する
-	 *
-	 * @param bookInfo 書籍情報
-	 */
 	public void registBook(BookDetailsInfo bookInfo) {
 
-		String sql = "INSERT INTO books (title, author,publisher,thumbnail_name,thumbnail_url,reg_date,upd_date) VALUES ('"
+		String sql = "INSERT INTO books (title, author,publisher,publish_date,thumbnail_url,thumbnail_name,EXPOSITION,isbn,upd_date,reg_date) VALUES ('"
 				+ bookInfo.getTitle() + "','" + bookInfo.getAuthor() + "','" + bookInfo.getPublisher() + "','"
-				+ bookInfo.getThumbnailName() + "','" + bookInfo.getThumbnailUrl() + "'," + "now()," + "now())";
+				+ bookInfo.getPublish_date() + "','" + bookInfo.getThumbnailUrl() + "','" + bookInfo.getThumbnailName()
+				+ "','" + bookInfo.getEXPOSITION() + "','" + bookInfo.getIsbn() + "'," + "'now()'," + "'now()');";
 
 		jdbcTemplate.update(sql);
-
 	}
 
 	/**
-	 * 書籍を削除する
-	 *
-	 * @param bookInfo bookId
+	 * 書籍を登録する ＠param bookInfo 書籍情報
+	 * 
 	 */
+
 	public void deleteBook(Integer bookId) {
 		// TODO 自動生成されたメソッド・スタブ
 		String sql = "DELETE FROM books WHERE id = " + bookId + ";";
 		jdbcTemplate.update(sql);
+	}
+
+	/**
+	 * 書籍を登録する 
+	 * ＠param bookInfo 書籍情報
+	 */
+
+	public int MaxId() {
+		String sql = "SELECT MAX(id) FROM books";
+
+		int MaxId = jdbcTemplate.queryForObject(sql, int.class);
+		return MaxId;
 	}
 }

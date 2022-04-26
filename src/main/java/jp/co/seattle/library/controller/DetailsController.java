@@ -42,5 +42,7 @@ public class DetailsController {
         model.addAttribute("bookDetailsInfo", bookdService.getBookInfo(bookId));
 
         return "details";
+       
+        
     }
 }
