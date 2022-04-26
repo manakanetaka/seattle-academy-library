@@ -36,6 +36,21 @@ public class AddBooksController {
 		return "addBook";
 	}
 
+	/**
+	 * 書籍情報を登録する
+	 * 
+	 * @param locale          ロケール情報
+	 * @param title           書籍名
+	 * @param author          著者名
+	 * @param publisher       出版社
+	 * @param file            サムネイルファイル
+	 * @param publishDate     出版日
+	 * @param isbn            ISBN
+	 * @param explanatoryText 説明文
+	 * @param model           モデル
+	 * @return 遷移先画面
+	 */
+
 	@Transactional
 	@RequestMapping(value = "/insertBook", method = RequestMethod.POST, produces = "text/plain;charset=utf-8")
 	public String insertBook(Locale locale, @RequestParam("title") String title, @RequestParam("author") String author,

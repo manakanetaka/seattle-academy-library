@@ -13,11 +13,23 @@ import jp.co.seattle.library.dto.BookInfo;
 import jp.co.seattle.library.rowMapper.BookDetailsInfoRowMapper;
 import jp.co.seattle.library.rowMapper.BookInfoRowMapper;
 
+/**
+ * 書籍サービス
+ * 
+ * booksテーブルに関する処理を実装する
+ * 
+ */
 @Service
 public class BooksService {
 	final static Logger logger = LoggerFactory.getLogger(BooksService.class);
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+
+	/**
+	 * 書籍リストを取得する
+	 * 
+	 * @return書籍リスト
+	 */
 
 	public List<BookInfo> getBookList() {
 
@@ -28,6 +40,13 @@ public class BooksService {
 
 		return getedBookList;
 	}
+
+	/**
+	 * 書籍IDに基づく書籍詳細情報を取得する ＠param bookId 書籍ID
+	 * 
+	 * @return 書籍情報
+	 *
+	 */
 
 	public BookDetailsInfo getBookInfo(int bookId) {
 
@@ -48,16 +67,24 @@ public class BooksService {
 		jdbcTemplate.update(sql);
 	}
 
+	/**
+	 * 書籍を登録する ＠param bookInfo 書籍情報
+	 * 
+	 */
+
 	public void deleteBook(Integer bookId) {
 		// TODO 自動生成されたメソッド・スタブ
 		String sql = "DELETE FROM books WHERE id = " + bookId + ";";
 		jdbcTemplate.update(sql);
 	}
 
-	//
-	// @return 最新の書籍情報を取得
+	/**
+	 * 書籍を登録する ＠param bookInfo 書籍情報
+	 */
+
 	public int MaxId() {
 		String sql = "SELECT MAX(id) FROM books";
+
 		int MaxId = jdbcTemplate.queryForObject(sql, int.class);
 		return MaxId;
 	}
