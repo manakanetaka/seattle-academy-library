@@ -79,7 +79,8 @@ public class BooksService {
 	}
 
 	/**
-	 * 書籍を登録する ＠param bookInfo 書籍情報
+	 * 書籍を登録する 
+	 * ＠param bookInfo 書籍情報
 	 */
 
 	public int MaxId() {
