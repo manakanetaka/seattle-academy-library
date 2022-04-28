@@ -90,20 +90,14 @@ public class BooksService {
 	}
 
 	public void UpBook(BookDetailsInfo bookInfo) {
-		
-		String sql = "UPDATE books SET title ='"+bookInfo.getTitle()+
-					                "',author='"+bookInfo.getAuthor()+
-					                "',publisher='"+bookInfo.getPublisher()+
-					                "',publish_date='"+bookInfo.getPublish_date()+
-					                "',thumbnail_url='"+bookInfo.getThumbnailUrl()+
-					                "',thumbnail_name='"+bookInfo.getThumbnailName()+
-					                "',upd_date=now(),EXPOSITION='"+bookInfo.getEXPOSITION()+
-					                "',isbn='"+bookInfo.getIsbn()+
-				                    "'WHERE id= '"+bookInfo.getBookId()+"';";
-		 jdbcTemplate.update(sql);
-				   
-				  
-	}	
-		
+
+		String sql = "UPDATE books SET title ='" + bookInfo.getTitle() + "',author='" + bookInfo.getAuthor()
+				+ "',publisher='" + bookInfo.getPublisher() + "',publish_date='" + bookInfo.getPublish_date()
+				+ "',thumbnail_url='" + bookInfo.getThumbnailUrl() + "',thumbnail_name='" + bookInfo.getThumbnailName()
+				+ "',upd_date=now(),EXPOSITION='" + bookInfo.getEXPOSITION() + "',isbn='" + bookInfo.getIsbn()
+				+ "'WHERE id= '" + bookInfo.getBookId() + "';";
+		jdbcTemplate.update(sql);
+
 	}
 
+}
