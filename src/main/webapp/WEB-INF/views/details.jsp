@@ -77,7 +77,9 @@
             <form method="post" action="RentBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_rentBook">借りる</button>
             </form>
-            <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook ">返す</button>
+            <form method="post" action="ReturnBook">
+                <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_returnBook ">返す</button>
+            </form>
             <form method="post" action="editBook">
                 <button type="submit" value="${bookDetailsInfo.bookId}" name="bookId" class="btn_editBook">編集</button>
             </form>
