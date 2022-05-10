@@ -18,12 +18,20 @@ public class RentalsService {
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
 
+	/**
+	 * 書籍を登録する ＠param bookId 書籍情報
+	 * 
+	 */
 	public void getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
 		String sql = "INSERT INTO rentals (book_id) VALUES (" + bookId + ")";
 		jdbcTemplate.update(sql);
 	}
+
+	/**
+	 * 書籍を取得する ＠param bookId 書籍情報
+	 */
 
 	public int selectRentalBook(int bookId) {
 		// TODO SQL生成

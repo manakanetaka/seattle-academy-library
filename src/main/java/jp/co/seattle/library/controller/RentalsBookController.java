@@ -29,23 +29,21 @@ public class RentalsBookController {
 	private RentalsService rentalbook;
 	@Autowired
 	private BooksService booksService;
-	
-	
+
 	@RequestMapping(value = "/RentBook", method = RequestMethod.POST)
 	public String rentalsBook(Locale locale, @RequestParam("bookId") Integer bookId, Model model) {
-		logger.info("Welcome delete! The client locale is {}.", locale);
+		logger.info("Welcome Rent! The client locale is {}.", locale);
 
-		if (0 < rentalbook.selectRentalBook(bookId)) {
+		if (rentalbook.selectRentalBook(bookId) > 0) {
 			model.addAttribute("errorrent", "貸出し済みです。");
 			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-			return "details";
 
 		} else {
 			rentalbook.getBookInfo(bookId);
 			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-			return "details";
-		}
 
+		}
+		return "details";
 	}
 
 }
