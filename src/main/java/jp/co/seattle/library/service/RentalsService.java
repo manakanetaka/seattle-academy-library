@@ -19,8 +19,7 @@ public class RentalsService {
 	private JdbcTemplate jdbcTemplate;
 
 	/**
-	 * 書籍を登録する 
-	 * ＠param bookId 書籍番号
+	 * 書籍を登録する ＠param bookId 書籍番号
 	 */
 	public void getBookInfo(int bookId) {
 
@@ -30,8 +29,8 @@ public class RentalsService {
 	}
 
 	/**
-	 * 書籍を取得する 
-	 * ＠param bookId 書籍番号
+	 * 書籍を取得する ＠param bookId 書籍番号
+	 * 
 	 * @return selectRentalBook
 	 */
 
@@ -44,6 +43,21 @@ public class RentalsService {
 			return selectRentalBook;
 		} catch (Exception e) {
 			return -1;
+
 		}
 	}
+
+	/**
+	 * 書籍を削除する ＠param bookInfo 書籍情報
+	 * 
+	 */
+
+	public void ReturnbookInfo(Integer bookId) {
+		// TODO 自動生成されたメソッド・スタブ
+		String sql = "DELETE FROM rentals WHERE book_id = " + bookId + ";";
+		jdbcTemplate.update(sql);
+	}
+
+	// TODO 自動生成されたメソッド・スタブ
+
 }
