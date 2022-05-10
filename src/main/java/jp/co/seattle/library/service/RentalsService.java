@@ -19,7 +19,8 @@ public class RentalsService {
 	private JdbcTemplate jdbcTemplate;
 
 	/**
-	 * 書籍を登録する ＠param bookId 書籍番号
+	 * 書籍を登録する 
+	 * @param bookId 書籍番号
 	 */
 	public void getBookInfo(int bookId) {
 
@@ -29,8 +30,8 @@ public class RentalsService {
 	}
 
 	/**
-	 * 書籍を取得する ＠param bookId 書籍番号
-	 * 
+	 * 書籍を取得する 
+	 * @param bookId 書籍番号
 	 * @return selectRentalBook
 	 */
 
@@ -57,7 +58,5 @@ public class RentalsService {
 		String sql = "DELETE FROM rentals WHERE book_id = " + bookId + ";";
 		jdbcTemplate.update(sql);
 	}
-
-	// TODO 自動生成されたメソッド・スタブ
 
 }

@@ -34,15 +34,16 @@ public class ReturnBookController {
 	public String ReturnBook(Locale locale, @RequestParam("bookId") Integer bookId, Model model) {
 		logger.info("Welcome Return! The client locale is {}.", locale);
 
-		if (rentalbook.selectRentalBook(bookId) < 0) {
-			model.addAttribute("errorrent", "貸出しされていません。");
-			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
-
-		} else {
+		if (rentalbook.selectRentalBook(bookId) >0) {
 			rentalbook.ReturnbookInfo(bookId);
-			model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+			
+		} else {
+			model.addAttribute("errorrent", "貸出しされていません。");
+			
 
 		}
+		model.addAttribute("bookDetailsInfo", booksService.getBookInfo(bookId));
+
 		return "details";
 	}
 }
