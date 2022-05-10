@@ -19,8 +19,8 @@ public class RentalsService {
 	private JdbcTemplate jdbcTemplate;
 
 	/**
-	 * 書籍を登録する ＠param bookId 書籍情報
-	 * 
+	 * 書籍を登録する 
+	 * ＠param bookId 書籍番号
 	 */
 	public void getBookInfo(int bookId) {
 
@@ -30,7 +30,9 @@ public class RentalsService {
 	}
 
 	/**
-	 * 書籍を取得する ＠param bookId 書籍情報
+	 * 書籍を取得する 
+	 * ＠param bookId 書籍番号
+	 * @return selectRentalBook
 	 */
 
 	public int selectRentalBook(int bookId) {
