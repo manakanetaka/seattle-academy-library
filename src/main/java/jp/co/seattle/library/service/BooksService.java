@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.seattle.library.dto.BookDetailsInfo;
 import jp.co.seattle.library.dto.BookInfo;
@@ -51,7 +52,9 @@ public class BooksService {
 	public BookDetailsInfo getBookInfo(int bookId) {
 
 		// JSPに渡すデータを設定する
-		String sql = "SELECT * FROM books where id =" + bookId;
+		String sql = "select books.id,books.title,books.author,books.publisher,books.publish_date,books.thumbnail_url,"
+				+ "books.thumbnail_name,books.reg_date,books.upd_date,books.exposition,books.isbn, rentals.book_id FROM books LEFT JOIN rentals ON books.id = rentals.book_id WHERE books.id="+bookId;
+				
 
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 		return bookDetailsInfo;
@@ -99,5 +102,10 @@ public class BooksService {
 		jdbcTemplate.update(sql);
 
 	}
-
+	public String uploadbulkbook(String bulkbook, MultipartFile file) {
+		
+		return null;
+	}
+	
+	
 }
