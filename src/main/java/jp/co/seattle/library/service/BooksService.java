@@ -56,7 +56,7 @@ public class BooksService {
                  + "case "
                  + "When book_id > 0  then '貸し出し中' "
                  + "else '貸し出し可' "
-                 + " END AS status "
+                 + " END AS status"
                  + " FROM books "
                  + "LEFT OUTER JOIN rentals "
                  +"ON books.id = rentals.book_id "
