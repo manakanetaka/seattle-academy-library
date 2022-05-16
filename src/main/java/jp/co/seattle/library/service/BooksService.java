@@ -25,6 +25,7 @@ public class BooksService {
 	final static Logger logger = LoggerFactory.getLogger(BooksService.class);
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
+	
 
 	/**
 	 * 書籍リストを取得する
@@ -53,14 +54,8 @@ public class BooksService {
 
 		// JSPに渡すデータを設定する
 		String sql = "SELECT books.id,books.title,books.author,books.publisher,books.publish_date,books.thumbnail_url,books.thumbnail_name,books.reg_date,books.upd_date,books.exposition,books.isbn,rentals.book_id, "
-                 + "case "
-                 + "When book_id > 0  then '貸し出し中' "
-                 + "else '貸し出し可' "
-                 + " END AS status"
-                 + " FROM books "
-                 + "LEFT OUTER JOIN rentals "
-                 +"ON books.id = rentals.book_id "
-                 +"WHERE books.id = " + bookId ;
+				+ "case " + "When book_id > 0  then '貸し出し中' " + "else '貸し出し可' " + " END AS status" + " FROM books "
+				+ "LEFT OUTER JOIN rentals " + "ON books.id = rentals.book_id " + "WHERE books.id = " + bookId;
 
 		BookDetailsInfo bookDetailsInfo = jdbcTemplate.queryForObject(sql, new BookDetailsInfoRowMapper());
 		return bookDetailsInfo;
@@ -108,10 +103,22 @@ public class BooksService {
 		jdbcTemplate.update(sql);
 
 	}
+
 	public String uploadbulkbook(String bulkbook, MultipartFile file) {
-		
+
 		return null;
 	}
+
+	public List<BookInfo> searchBookList(String key) {
+
+		// TODO 取得したい情報を取得するようにSQLを修正
+		List<BookInfo> searchBookList = jdbcTemplate.query(
+				"select title,id,author,publisher,publish_date,thumbnail_url from books where title LIKE '%"+ key + "%';",
+				new BookInfoRowMapper());
+
+		return searchBookList;
+
 	
-	
+
+}
 }
