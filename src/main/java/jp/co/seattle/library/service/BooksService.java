@@ -7,7 +7,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import jp.co.seattle.library.dto.BookDetailsInfo;
 import jp.co.seattle.library.dto.BookInfo;
@@ -25,7 +24,6 @@ public class BooksService {
 	final static Logger logger = LoggerFactory.getLogger(BooksService.class);
 	@Autowired
 	private JdbcTemplate jdbcTemplate;
-	
 
 	/**
 	 * 書籍リストを取得する
@@ -104,21 +102,15 @@ public class BooksService {
 
 	}
 
-	public String uploadbulkbook(String bulkbook, MultipartFile file) {
-
-		return null;
-	}
-
 	public List<BookInfo> searchBookList(String key) {
 
 		// TODO 取得したい情報を取得するようにSQLを修正
-		List<BookInfo> searchBookList = jdbcTemplate.query(
-				"select title,id,author,publisher,publish_date,thumbnail_url from books where title LIKE '%"+ key + "%';",
-				new BookInfoRowMapper());
+		List<BookInfo> searchBookList = jdbcTemplate
+				.query("select title,id,author,publisher,publish_date,thumbnail_url from books where title LIKE '%"
+						+ key + "%';", new BookInfoRowMapper());
 
 		return searchBookList;
 
-	
+	}
 
-}
 }
