@@ -102,4 +102,15 @@ public class BooksService {
 
 	}
 
+	public List<BookInfo> searchBookList(String key) {
+
+		// TODO 取得したい情報を取得するようにSQLを修正
+		List<BookInfo> searchBookList = jdbcTemplate
+				.query("select title,id,author,publisher,publish_date,thumbnail_url from books where title LIKE '%"
+						+ key + "%';", new BookInfoRowMapper());
+
+		return searchBookList;
+
+	}
+
 }
