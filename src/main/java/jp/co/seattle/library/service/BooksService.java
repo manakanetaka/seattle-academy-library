@@ -108,9 +108,16 @@ public class BooksService {
 		List<BookInfo> searchBookList = jdbcTemplate
 				.query("select title,id,author,publisher,publish_date,thumbnail_url from books where title LIKE '%"
 						+ key + "%';", new BookInfoRowMapper());
-
 		return searchBookList;
-
 	}
 
+	public List<BookInfo> matchBookList(String key) {
+
+		List<BookInfo> matchBookList = jdbcTemplate
+				.query("select title,id,author,publisher,publish_date,thumbnail_url from books where title = '" + key
+						+ "';", new BookInfoRowMapper());
+
+		return matchBookList;
+
+	}
 }
