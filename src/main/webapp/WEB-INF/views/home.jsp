@@ -31,6 +31,7 @@
             <form method="post" action="searchBook">
                 <input type="search" class="search1" name="search1" placeholder="キーワードを入力">
                 <button type="submit" class="btn_saerch_book">検索</button>
+                <input type="radio" name="radio" value="partmatch">部分一致 <input type="radio" name="radio" value="match" checked>完全一致
             </form>
         </DIV>
         <div class="content_body">
